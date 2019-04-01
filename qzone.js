@@ -3,6 +3,7 @@ const data = require("./auth");
 const fs = require('fs');
 const request = require('request-promise-native');
 const logger = require('./logger');
+const path = require('path');
 
 const url = "https://i.qq.com";
 
@@ -70,7 +71,7 @@ async function getHistory(){
     const date = new Date();
     const json_file_name = `files/${date.getMonth() + 1 }-${date.getDate()}.json`
     //console.log(json_file_name);
-    const json_data = JSON.parse(fs.readFileSync(json_file_name, 'utf8'));
+    const json_data = JSON.parse(fs.readFileSync(path.resolve(__dirname, json_file_name), 'utf8'));
     //1: 大事记
     const res = json_data['res'].filter(x => x['id'] == '1')[0];
     const list = res['lists'];

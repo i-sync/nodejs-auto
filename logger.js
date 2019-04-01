@@ -3,6 +3,7 @@
  */
 const winston = require('winston');
 const winstonRotator = require('winston-daily-rotate-file');
+const path = require('path');
 
 const consoleConfig = [
   new winston.transports.Console({
@@ -11,7 +12,7 @@ const consoleConfig = [
   new winstonRotator({
       'name': 'log-file',
       'level': 'info',
-      'filename': './logs/log_file.log',
+      'filename': `${path.resolve(__dirname, 'logs/log_file.log')}`,
       'json': false,
       'datePattern': 'YYYY-MM-DD',
       'prepend': true
